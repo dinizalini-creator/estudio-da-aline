@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Estúdio da Aline · Pé de Brinkar</title>
+
+<!-- PWA META TAGS -->
+<meta name="application-name" content="Estúdio da Aline">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Estúdio">
+<meta name="theme-color" content="#662818">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Estúdio de conteúdo da Pé de Brinkar — pautas, legendas, reels e checklist de junho.">
+
+<!-- ÍCONE APPLE (gerado via canvas no script) -->
+<link id="apple-touch-icon" rel="apple-touch-icon" sizes="180x180">
+<link id="favicon" rel="icon" type="image/png" sizes="32x32">
+
+<!-- MANIFEST INLINE -->
+<script>
+(function() {
+  // Gera ícone via canvas
+  function gerarIcone(size) {
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const ctx = c.getContext('2d');
+    // Fundo cacau
+    ctx.fillStyle = '#662818';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, size, size, size * 0.22);
+    ctx.fill();
+    // Círculo pêssego decorativo
+    ctx.fillStyle = 'rgba(212,133,106,0.25)';
+    ctx.beginPath();
+    ctx.arc(size * 0.78, size * 0.25, size * 0.38, 0, Math.PI * 2);
+    ctx.fill();
+    // Texto "Pé"
+    ctx.fillStyle = '#d4856a';
+    ctx.font = `bold ${size * 0.18}px serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('Pé de', size * 0.5, size * 0.42);
+    // Texto "Brinkar"
+    ctx.fillStyle = '#faf4ee';
+    ctx.font = `italic bold ${size * 0.22}px serif`;
+    ctx.fillText('Brinkar', size * 0.5, size * 0.66);
+    // Estrela IA
+    ctx.fillStyle = '#c4a882';
+    ctx.font = `${size * 0.14}px sans-serif`;
+    ctx.fillText('✨', size * 0.5, size * 0.86);
+    return c.toDataURL('image/png');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      const icon180 = gerarIcone(180);
+      const icon32  = gerarIcone(32);
+      document.getElementById('apple-touch-icon').href = icon180;
+      document.getElementById('favicon').href = icon32;
+
+      // Manifest dinâmico
+      const manifest = {
+        name: 'Estúdio da Aline',
+        short_name: 'Estúdio',
+        description: 'Criação de conteúdo Pé de Brinkar',
+        start_url: '.',
+        display: 'standalone',
+        background_color: '#662818',
+        theme_color: '#662818',
+        orientation: 'portrait',
+        icons: [
+          { src: gerarIcone(192), sizes: '192x192', type: 'image/png' },
+          { src: gerarIcone(512), sizes: '512x512', type: 'image/png' }
+        ]
+      };
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const link = document.createElement('link');
+      link.rel = 'manifest'; link.href = url;
+      document.head.appendChild(link);
+    } catch(e) {}
+  });
+})();
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --creme: #faf4ee;
+  --pessego: #d4856a;
+  --cacau: #662818;
+  --caramelo: #c4a882;
+  --rosa: #b5897a;
+  --creme2: #f3ece4;
+  --borda: rgba(102,40,24,0.12);
+  --suave: #8a6050;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--creme);
+  color: var(--cacau);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* DESKTOP: layout duas colunas */
+@media (min-width: 768px) {
+  body { display: flex; flex-direction: column; }
+
+  .topo {
+    max-width: 100%;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cacau);
+    padding: 20px 40px 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .topo-inner { margin-bottom: 0; flex-shrink: 0; }
+
+  .tabs { flex: 1; flex-wrap: nowrap; overflow-x: auto; }
+
+  .conteudo-desktop {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .painel {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 28px 40px;
+  }
+
+  .rodape { max-width: 100%; }
+}
+
+@media (max-width: 767px) {
+  body {
+    max-width: 430px;
+    margin: 0 auto;
+  }
+}
+
+.topo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.logo-txt {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--creme);
+  line-height: 1;
+}
+
+.logo-txt em {
+  color: var(--caramelo);
+}
+
+.ia-badge {
+  background: var(--pessego);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  padding: 9px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab.tab-junho {
+  color: rgba(196,168,130,0.7);
+}
+
+.tab.tab-junho.ativa {
+  color: var(--caramelo);
+  border-bottom-color: var(--caramelo);
+}
+
+.tab.ativa {
+  color: var(--caramelo);
+  border-bottom-color: var(--caramelo);
+}
+
+/* TOPO MOBILE */
+@media (max-width: 767px) {
+  .topo {
+    background: var(--cacau);
+    padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+}
+.painel { display: none; padding: 20px; }
+.painel.ativo { display: block; }
+
+/* SEÇÃO TÍTULO */
+.sec-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--pessego);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.sec-sub {
+  font-size: 12px;
+  color: var(--suave);
+  margin-bottom: 20px;
+}
+
+/* DICA */
+.dica {
+  background: #fdf0e8;
+  border: 1px solid rgba(212,133,106,0.25);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--cacau);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.dica strong { color: var(--pessego); }
+
+/* LABEL */
+.campo-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* PILL BUTTONS */
+.pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.pill {
+  border: 1.5px solid var(--borda);
+  border-radius: 50px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  background: white;
+  color: var(--cacau);
+  transition: all 0.18s;
+}
+
+.pill.ativo {
+  background: var(--pessego);
+  border-color: var(--pessego);
+  color: white;
+}
+
+/* CARDS DE TEMA */
+.temas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tema-card {
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 16px;
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.tema-card:nth-child(1) { background: #fdf5f0; }
+.tema-card:nth-child(2) { background: #f0f5f0; }
+.tema-card:nth-child(3) { background: #faf5eb; }
+.tema-card:nth-child(4) { background: #f0f3f8; }
+.tema-card:nth-child(5) { background: #f5f0f8; }
+.tema-card:nth-child(6) { background: #fdf0f5; }
+
+.tema-card.ativo {
+  border-color: var(--pessego);
+  box-shadow: 0 0 0 2px rgba(212,133,106,0.2);
+}
+
+.tema-emoji { font-size: 1.5rem; margin-bottom: 6px; }
+.tema-nome { font-size: 13px; font-weight: 500; color: var(--cacau); margin-bottom: 2px; }
+.tema-desc { font-size: 11px; color: var(--suave); line-height: 1.4; }
+
+/* CHECKBOXES */
+.check-lista { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+
+.check-item {
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.check-item.ativo {
+  border-color: var(--pessego);
+  background: #fdf5f0;
+}
+
+.check-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--borda);
+  background: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  transition: all 0.18s;
+}
+
+.check-item.ativo .check-box {
+  background: var(--pessego);
+  border-color: var(--pessego);
+  color: white;
+  font-size: 10px;
+}
+
+.check-nome { font-size: 13px; font-weight: 500; color: var(--cacau); margin-bottom: 2px; }
+.check-desc { font-size: 11px; color: var(--suave); line-height: 1.4; }
+
+/* TEXTAREA */
+.campo-texto {
+  width: 100%;
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  padding: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--cacau);
+  resize: none;
+  outline: none;
+  margin-bottom: 20px;
+  transition: border-color 0.18s;
+}
+
+.campo-texto:focus { border-color: var(--pessego); }
+.campo-texto::placeholder { color: var(--caramelo); opacity: 0.7; }
+
+/* BOTÃO PRINCIPAL */
+.btn-gerar {
+  width: 100%;
+  background: var(--pessego);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.btn-gerar:hover { background: #c4704f; }
+.btn-gerar:active { transform: scale(0.98); }
+
+.btn-gerar.loading {
+  background: var(--caramelo);
+  cursor: wait;
+}
+
+/* RESULTADO */
+.resultado {
+  background: var(--cacau);
+  border-radius: 20px;
+  padding: 20px;
+  display: none;
+  margin-bottom: 20px;
+}
+
+.resultado.visivel { display: block; }
+
+.resultado-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--caramelo);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+}
+
+.resultado-bloco { margin-bottom: 16px; }
+
+.resultado-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 6px;
+}
+
+.resultado-texto {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.btn-copiar {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.18s;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-copiar:hover { background: rgba(255,255,255,0.18); color: white; }
+
+/* SPINNER */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* MESES — planejador */
+.mes-bloco { margin-bottom: 24px; }
+
+.mes-nome {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cacau);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid var(--borda);
+}
+
+/* SELECTOR DE FREQUÊNCIA */
+.freq-grid { display: flex; gap: 8px; margin-bottom: 20px; }
+.freq-btn {
+  flex: 1;
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 50px;
+  padding: 10px 8px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  color: var(--cacau);
+  transition: all 0.18s;
+}
+.freq-btn.ativo {
+  background: var(--pessego);
+  border-color: var(--pessego);
+  color: white;
+  font-weight: 500;
+}
+
+/* DATAS IMPORTANTES */
+.campo-input {
+  width: 100%;
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  padding: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--cacau);
+  outline: none;
+  margin-bottom: 20px;
+  transition: border-color 0.18s;
+}
+
+.campo-input:focus { border-color: var(--pessego); }
+.campo-input::placeholder { color: var(--caramelo); opacity: 0.7; }
+
+/* TOM */
+.tom-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.tom-btn {
+  border: 1.5px solid var(--borda);
+  border-radius: 50px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  background: white;
+  color: var(--cacau);
+  transition: all 0.18s;
+}
+
+.tom-btn.ativo {
+  background: var(--cacau);
+  border-color: var(--cacau);
+  color: white;
+}
+
+/* GUIA CANVA */
+.canva-divisor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 28px 0 18px;
+}
+.canva-divisor-linha { flex: 1; height: 0.5px; background: var(--borda); }
+.canva-divisor-txt {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  white-space: nowrap;
+}
+
+.template-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1.5px solid var(--borda);
+}
+
+.template-preview {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+}
+
+.template-preview-frase {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.35;
+  position: relative;
+  z-index: 1;
+}
+
+.template-preview-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  text-align: center;
+  margin-top: 5px;
+  opacity: 0.6;
+  position: relative;
+  z-index: 1;
+}
+
+.template-circ {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+}
+
+.template-corpo {
+  background: white;
+  padding: 14px 16px;
+}
+
+.template-nome {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cacau);
+  margin-bottom: 10px;
+}
+
+.template-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spec-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.spec-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  flex-shrink: 0;
+  width: 62px;
+  padding-top: 1px;
+}
+
+.spec-val { color: var(--suave); }
+.spec-val strong { color: var(--cacau); }
+
+.template-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-top: 10px;
+}
+
+.canva-dica {
+  background: var(--cacau);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.canva-dica-titulo {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--caramelo);
+  margin-bottom: 8px;
+}
+
+.canva-dica-item {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  padding-left: 12px;
+  position: relative;
+}
+
+.canva-dica-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--pessego);
+}
+
+.ajuste-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ajuste-card {
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.ajuste-param {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cacau);
+  margin-bottom: 2px;
+}
+
+.ajuste-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pessego);
+}
+
+/* TEMPLATES WHATSAPP */
+.tpl-card {
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.tpl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tpl-header:hover { background: #fdf5f0; }
+
+.tpl-etapa {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pessego);
+  margin-bottom: 3px;
+}
+
+.tpl-nome {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cacau);
+  margin-bottom: 2px;
+}
+
+.tpl-quando {
+  font-size: 11px;
+  color: var(--suave);
+}
+
+.tpl-arrow {
+  font-size: 14px;
+  color: var(--rosa);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.tpl-card.aberto .tpl-arrow { transform: rotate(90deg); }
+
+.tpl-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 0.5px solid var(--borda);
+}
+
+.tpl-card.aberto .tpl-body { display: block; }
+
+.tpl-texto {
+  background: var(--creme);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 12.5px;
+  color: var(--suave);
+  line-height: 1.85;
+  white-space: pre-wrap;
+  border: 0.5px solid var(--borda);
+  margin: 12px 0 10px;
+}
+
+.tpl-copiar {
+  background: var(--pessego);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.tpl-copiar:hover { background: #c4704f; }
+
+
+.post-legenda-wrap { border-top: 0.5px solid var(--borda); display: none; }
+.post-legenda-wrap.aberta { display: block; }
+.post-legenda-btn {
+  width: 100%;
+  background: #fdf5f0;
+  border: none;
+  padding: 9px 14px;
+  text-align: left;
+  font-size: 11px;
+  color: var(--pessego);
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+.post-legenda-btn:hover { background: #fbeae7; }
+.post-legenda-corpo { padding: 0 14px 14px; }
+.post-legenda-texto { background: var(--creme); border-radius: 10px; padding: 12px 14px; font-size: 12px; color: var(--suave); line-height: 1.8; white-space: pre-wrap; border: 0.5px solid var(--borda); margin-bottom: 8px; }
+.post-legenda-copiar { background: var(--cacau); color: var(--caramelo); border: none; border-radius: 8px; padding: 7px 14px; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+.post-stories-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cacau); margin: 12px 0 6px; display: block; }
+.post-story-item { background: var(--creme2); border-radius: 8px; padding: 7px 12px; font-size: 12px; color: var(--suave); display: flex; gap: 8px; line-height: 1.6; margin-bottom: 5px; }
+.post-story-n { color: var(--pessego); font-weight: 700; flex-shrink: 0; }
+.post-brinquedo-badge { background: var(--pessego); color: white; font-size: 9px; font-weight: 500; padding: 2px 8px; border-radius: 50px; margin-left: 6px; vertical-align: middle; }
+
+/* JUNHO CHECKLIST */
+.junho-progresso {
+  background: var(--cacau);
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.prog-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.prog-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--caramelo); line-height: 1; }
+.prog-barra-wrap { flex: 1; margin: 0 16px; }
+.prog-barra-bg { background: rgba(255,255,255,0.12); border-radius: 50px; height: 6px; }
+.prog-barra-fill { background: var(--pessego); border-radius: 50px; height: 6px; width: 0%; transition: width 0.4s ease; }
+.prog-pct { font-size: 13px; color: var(--caramelo); font-weight: 500; }
+
+.semana-bloco { margin-bottom: 24px; }
+.semana-titulo {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 0.5px solid var(--borda);
+}
+
+.post-item {
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px 14px 0 0;
+  padding: 14px 14px 14px 12px;
+  margin-bottom: 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.post-item.sem-legenda {
+  border-radius: 14px;
+  margin-bottom: 8px;
+}
+
+.post-legenda-wrap {
+  border: 1.5px solid var(--borda);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  display: none;
+  margin-bottom: 8px;
+  background: white;
+}
+
+.post-legenda-wrap.aberta { display: block; }
+
+.post-item.feito {
+  background: #f5f0f8;
+  border-color: rgba(181,137,122,0.3);
+  opacity: 0.65;
+}
+
+.post-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--borda);
+  background: white;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 1px;
+  transition: all 0.2s;
+}
+
+.post-item.feito .post-check {
+  background: var(--rosa);
+  border-color: var(--rosa);
+  color: white;
+}
+
+.post-data-badge {
+  background: var(--cacau);
+  color: var(--caramelo);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 4px 9px;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1.1;
+  min-width: 38px;
+}
+
+.post-data-dia {
+  font-size: 9px;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(196,168,130,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.post-info { flex: 1; }
+
+.post-formato {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pessego);
+  margin-bottom: 3px;
+}
+
+.post-titulo {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cacau);
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+
+.post-item.feito .post-titulo { text-decoration: line-through; color: var(--suave); }
+
+.post-desc {
+  font-size: 11px;
+  color: var(--suave);
+  line-height: 1.5;
+}
+
+  text-align: center;
+  padding: 12px 20px 32px;
+  font-size: 11px;
+  color: var(--caramelo);
+  opacity: 0.6;
+}
+
+/* ANIMAÇÃO ENTRADA */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.resultado.visivel { animation: fadeUp 0.35s ease; }
+
+/* HORÁRIOS */
+.horarios {
+  background: white;
+  border: 1.5px solid var(--borda);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.horario-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--borda);
+  font-size: 12px;
+}
+
+.horario-item:last-child { border-bottom: none; }
+.horario-hora { font-weight: 500; color: var(--pessego); width: 60px; flex-shrink: 0; }
+.horario-desc { color: var(--suave); }
+.horario-best { background: var(--pessego); color: white; font-size: 10px; padding: 2px 8px; border-radius: 50px; margin-left: auto; flex-shrink: 0; }
+
+/* HASHTAGS */
+.ht-grupo { margin-bottom: 16px; }
+.ht-grupo-nome { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--suave); margin-bottom: 8px; }
+.ht-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+.ht {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 50px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--cacau);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ht:active { background: var(--pessego); color: white; border-color: var(--pessego); }
+.ht.copiado { background: var(--pessego); color: white; border-color: var(--pessego); }
+
+/* PWA INSTALL BANNER */
+.pwa-banner {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cacau);
+  border: 1px solid rgba(196,168,130,0.3);
+  border-radius: 16px;
+  padding: 12px 16px;
+  width: calc(100% - 40px);
+  max-width: 390px;
+  align-items: center;
+  gap: 12px;
+  z-index: 999;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.pwa-banner-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--pessego); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.pwa-banner-txt { flex: 1; }
+.pwa-banner-titulo { font-size: 13px; font-weight: 500; color: white; margin-bottom: 2px; }
+.pwa-banner-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+.pwa-banner-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.pwa-btn-instalar { background: var(--pessego); color: white; border: none; border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+.pwa-btn-fechar { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); border: none; border-radius: 8px; padding: 7px 10px; font-size: 14px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- PWA INSTALL BANNER -->
+<div class="pwa-banner" id="pwa-banner">
+  <div class="pwa-banner-icon">✨</div>
+  <div class="pwa-banner-txt">
+    <div class="pwa-banner-titulo">Instalar como app</div>
+    <div class="pwa-banner-sub">Abre direto, sem navegador</div>
+  </div>
+  <div class="pwa-banner-btns">
+    <button class="pwa-btn-instalar" onclick="instalarApp()">Instalar</button>
+    <button class="pwa-btn-fechar" onclick="fecharBanner()">✕</button>
+  </div>
+</div>
+
+<div class="topo">
+  <div class="topo-inner">
+    <div class="logo-txt">Estúdio da <em>Aline</em></div>
+    <div class="ia-badge">✨ com IA</div>
+  </div>
+  <div class="tabs" id="tabs-row">
+    <div class="tab ativa" onclick="trocarTab('pautas')">💡 Pautas</div>
+    <div class="tab" onclick="trocarTab('legenda')">✍️ Legenda</div>
+    <div class="tab" onclick="trocarTab('reels')">🎬 Reels</div>
+    <div class="tab" onclick="trocarTab('mes')">📅 Mês</div>
+    <div class="tab" onclick="trocarTab('hashtags')">🏷️ Tags & Canva</div>
+    <div class="tab tab-junho" onclick="trocarTab('junho')">✅ Junho</div>
+    <div class="tab" onclick="trocarTab('templates')">📋 Templates</div>
+  </div>
+</div>
+
+<!-- ═══ PAUTAS ═══ -->
+<div id="painel-pautas" class="painel ativo">
+  <p class="sec-titulo">Gerador de<br><em>Pautas</em></p>
+  <p class="sec-sub">Escolha um tema e eu gero ideias no estilo Pé de Brinkar</p>
+
+  <div class="dica"><strong>Dica:</strong> Conteúdo com emoção real engaja mais. Escolhe o que você tá sentindo hoje.</div>
+
+  <span class="campo-label">Tema do conteúdo</span>
+  <div class="temas-grid">
+    <div class="tema-card" onclick="selecionarTema(this, 'Brinquedos e desenvolvimento')">
+      <div class="tema-emoji">🧸</div>
+      <div class="tema-nome">Brinquedos</div>
+      <div class="tema-desc">Montessori, madeira, desenvolvimento</div>
+    </div>
+    <div class="tema-card" onclick="selecionarTema(this, 'Festa infantil consciente')">
+      <div class="tema-emoji">🎉</div>
+      <div class="tema-nome">Festa</div>
+      <div class="tema-desc">Locação, pacotes, experiência</div>
+    </div>
+    <div class="tema-card" onclick="selecionarTema(this, 'Maternidade e parentalidade consciente')">
+      <div class="tema-emoji">🤱</div>
+      <div class="tema-nome">Maternidade</div>
+      <div class="tema-desc">Mãe real, caos e amor</div>
+    </div>
+    <div class="tema-card" onclick="selecionarTema(this, 'Brincar livre e infância')">
+      <div class="tema-emoji">🌿</div>
+      <div class="tema-nome">Brincar livre</div>
+      <div class="tema-desc">Infância, criatividade, natureza</div>
+    </div>
+    <div class="tema-card" onclick="selecionarTema(this, 'Bastidores e rotina da empreendedora')">
+      <div class="tema-emoji">🎪</div>
+      <div class="tema-nome">Bastidores</div>
+      <div class="tema-desc">Rotina, montagem, dia a dia</div>
+    </div>
+    <div class="tema-card" onclick="selecionarTema(this, 'Educação montessoriana e desenvolvimento infantil')">
+      <div class="tema-emoji">🧠</div>
+      <div class="tema-nome">Educação</div>
+      <div class="tema-desc">Montessori, aprendizado lúdico</div>
+    </div>
+  </div>
+
+  <span class="campo-label">Formato</span>
+  <div class="pills" id="pills-formato">
+    <div class="pill ativo" onclick="selecionarPill(this, 'pills-formato')">📱 Carrossel</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-formato')">🎬 Reels</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-formato')">🖼️ Post único</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-formato')">⭕ Stories</div>
+  </div>
+
+  <span class="campo-label">Quantas ideias?</span>
+  <div class="pills" id="pills-qtd">
+    <div class="pill ativo" onclick="selecionarPill(this, 'pills-qtd')">5 ideias</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-qtd')">10 ideias</div>
+  </div>
+
+  <span class="campo-label">Contexto extra (opcional)</span>
+  <textarea class="campo-texto" id="contexto-pautas" rows="3" placeholder="Ex: semana das festas juninas, acabei de montar o kit da casinha..."></textarea>
+
+  <button class="btn-gerar" id="btn-pautas" onclick="gerarPautas()">
+    💡 Gerar ideias de pautas
+  </button>
+
+  <div class="resultado" id="resultado-pautas">
+    <div class="resultado-titulo">✨ Pautas geradas</div>
+    <div id="resultado-pautas-texto" class="resultado-texto"></div>
+    <button class="btn-copiar" onclick="copiar('resultado-pautas-texto')">📋 Copiar tudo</button>
+  </div>
+</div>
+
+<!-- ═══ LEGENDA ═══ -->
+<div id="painel-legenda" class="painel">
+  <p class="sec-titulo">Escritora de<br><em>Legendas</em></p>
+  <p class="sec-sub">Fala o que você quer dizer, eu escrevo do jeito Pé de Brinkar</p>
+
+  <span class="campo-label">Tom da legenda</span>
+  <div class="check-lista" id="tons-legenda">
+    <div class="check-item ativo" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <div><div class="check-nome">💗 Pessoal e emocional</div><div class="check-desc">História real, virada, conexão</div></div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div><div class="check-nome">😄 Humor e leveza</div><div class="check-desc">Autoironia, relato engraçado</div></div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div><div class="check-nome">🧠 Desmistificar</div><div class="check-desc">Quebrando mito, verdade que surpreende</div></div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div><div class="check-nome">📣 CTA de comunidade</div><div class="check-desc">Salvar, marcar amiga, comentar</div></div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div><div class="check-nome">🎯 Vendas suave</div><div class="check-desc">Apresenta o serviço sem forçar</div></div>
+    </div>
+  </div>
+
+  <span class="campo-label">O que você quer comunicar?</span>
+  <textarea class="campo-texto" id="msg-legenda" rows="4" placeholder="Ex: quero falar que brinquedo de madeira não precisa ser chato, que tem muito brinquedo bonito e inteligente no acervo..."></textarea>
+
+  <span class="campo-label">Tom adicional (opcional)</span>
+  <div class="tom-grid" id="toms">
+    <div class="tom-btn" onclick="selecionarTom(this)">curto</div>
+    <div class="tom-btn" onclick="selecionarTom(this)">sem emoji excessivo</div>
+    <div class="tom-btn" onclick="selecionarTom(this)">acolhedor</div>
+    <div class="tom-btn" onclick="selecionarTom(this)">direto</div>
+    <div class="tom-btn" onclick="selecionarTom(this)">profundo</div>
+  </div>
+
+  <button class="btn-gerar" id="btn-legenda" onclick="gerarLegenda()">
+    ✍️ Escrever legenda
+  </button>
+
+  <div class="resultado" id="resultado-legenda">
+    <div class="resultado-titulo">✨ Legenda criada</div>
+    <div id="resultado-legenda-texto" class="resultado-texto"></div>
+    <button class="btn-copiar" onclick="copiar('resultado-legenda-texto')">📋 Copiar legenda</button>
+  </div>
+</div>
+
+<!-- ═══ REELS ═══ -->
+<div id="painel-reels" class="painel">
+  <p class="sec-titulo">Roteirista de<br><em>Reels</em></p>
+  <p class="sec-sub">Do gancho ao CTA em segundos</p>
+
+  <span class="campo-label">Duração</span>
+  <div class="pills" id="pills-dur">
+    <div class="pill ativo" onclick="selecionarPill(this, 'pills-dur')">15s</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-dur')">30s</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-dur')">60s</div>
+  </div>
+
+  <span class="campo-label">Tema ou ideia do Reels</span>
+  <textarea class="campo-texto" id="tema-reels" rows="3" placeholder="Ex: mostrar o acervo de brinquedos com criança explorando tudo..."></textarea>
+
+  <span class="campo-label">Objetivo do vídeo</span>
+  <div class="pills" id="pills-obj">
+    <div class="pill ativo" onclick="selecionarPill(this, 'pills-obj')">💗 Conexão</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-obj')">🎯 Vender</div>
+    <div class="pill" onclick="selecionarPill(this, 'pills-obj')">📈 Crescer</div>
+  </div>
+
+  <button class="btn-gerar" id="btn-reels" onclick="gerarReels()">
+    🎬 Gerar roteiro
+  </button>
+
+  <div class="resultado" id="resultado-reels">
+    <div class="resultado-titulo">✨ Roteiro criado</div>
+    <div id="resultado-reels-texto" class="resultado-texto"></div>
+    <button class="btn-copiar" onclick="copiar('resultado-reels-texto')">📋 Copiar roteiro</button>
+  </div>
+</div>
+
+<!-- ═══ MÊS ═══ -->
+<div id="painel-mes" class="painel">
+  <p class="sec-titulo">Planejador do<br><em>Mês</em></p>
+  <p class="sec-sub">Defina o ritmo e eu monto sua grade</p>
+
+  <span class="campo-label">Quantos posts por semana?</span>
+  <div class="freq-grid" id="freq">
+    <div class="freq-btn" onclick="selecionarFreq(this)">2x</div>
+    <div class="freq-btn ativo" onclick="selecionarFreq(this)">3x</div>
+    <div class="freq-btn" onclick="selecionarFreq(this)">5x</div>
+  </div>
+
+  <span class="campo-label">Datas importantes no mês</span>
+  <input class="campo-input" id="datas-mes" type="text" placeholder="Ex: dia das mães dia 11, aniversário da Alícia no dia 20...">
+
+  <span class="campo-label">Mês de referência</span>
+  <input class="campo-input" id="mes-ref" type="text" placeholder="Ex: julho 2026">
+
+  <span class="campo-label">Contexto extra (opcional)</span>
+  <textarea class="campo-texto" id="contexto-mes" rows="3" placeholder="Ex: tenho festa marcada no dia 14, quero fazer campanha de inverno..."></textarea>
+
+  <button class="btn-gerar" id="btn-mes" onclick="gerarMes()">
+    📅 Montar grade do mês
+  </button>
+
+  <div class="resultado" id="resultado-mes">
+    <div class="resultado-titulo">✨ Calendário do mês</div>
+    <div id="resultado-mes-texto" class="resultado-texto"></div>
+    <button class="btn-copiar" onclick="copiar('resultado-mes-texto')">📋 Copiar grade</button>
+  </div>
+
+  <!-- HORÁRIOS FIXOS -->
+  <div style="margin-top: 24px;">
+    <span class="campo-label">Melhores horários pra postar</span>
+    <div class="horarios">
+      <div class="horario-item">
+        <span class="horario-hora">7h – 8h</span>
+        <span class="horario-desc">Antes das crianças acordarem</span>
+      </div>
+      <div class="horario-item">
+        <span class="horario-hora">12h – 13h</span>
+        <span class="horario-desc">Pausa do almoço</span>
+      </div>
+      <div class="horario-item">
+        <span class="horario-hora">19h30 – 21h</span>
+        <span class="horario-desc">Crianças dormindo, mãe relaxando</span>
+        <span class="horario-best">melhor</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HASHTAGS ═══ -->
+<div id="painel-hashtags" class="painel">
+  <p class="sec-titulo">Tags &<br><em>Canva</em></p>
+  <p class="sec-sub">Sua referência rápida de criação</p>
+
+  <span class="campo-label">🎨 Templates Canva</span>
+  <p style="font-size:12px;color:var(--suave);line-height:1.7;margin-bottom:16px;">6 templates — crie uma vez, reutilize sempre. Duplique o certo e troque só o texto.</p>
+
+  <!-- T1 CACAU -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#662818;">
+      <div class="template-circ" style="width:100px;height:100px;background:#d4856a;top:-30px;right:-20px;"></div>
+      <div><div class="template-preview-frase" style="color:white;">Frase de <em>impacto</em></div><div class="template-preview-sub" style="color:rgba(255,255,255,0.5);">Pé de Brinkar</div></div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T1 — Arte de frase · Fundo Cacau</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#662818</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Italic</strong> · branco · 52–64pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · <strong>#c4a882</strong> · 14pt · rodapé</span></div>
+      </div>
+      <span class="template-tag" style="background:#fbeae7;color:#662818;">Artes 01, 05, 07 · frases fortes e carrosseis</span>
+    </div>
+  </div>
+
+  <!-- T2 PÊSSEGO -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#d4856a;">
+      <div class="template-circ" style="width:120px;height:120px;background:#662818;bottom:-40px;left:-30px;"></div>
+      <div><div class="template-preview-frase" style="color:white;">Pergunta de<br><em>engajamento</em></div></div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T2 — Arte de frase · Fundo Pêssego</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#d4856a</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Italic</strong> · branco · 48–58pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · branco 60% · 14pt · rodapé</span></div>
+      </div>
+      <span class="template-tag" style="background:#fdf5f0;color:#d4856a;">Arte 02 · perguntas e engajamento</span>
+    </div>
+  </div>
+
+  <!-- T3 CREME -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#faf4ee;border-bottom:0.5px solid var(--borda);">
+      <div><div class="template-preview-frase" style="color:#662818;">Frase <em style="color:#d4856a;">reflexiva</em></div></div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T3 — Arte de frase · Fundo Creme</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#faf4ee</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Italic</strong> · cacau <strong>#662818</strong> · 48–56pt</span></div>
+        <div class="spec-row"><span class="spec-label">Destaque</span><span class="spec-val">Palavra-chave em <strong>#d4856a</strong> pêssego</span></div>
+      </div>
+      <span class="template-tag" style="background:#f5ede0;color:#662818;">Arte 03, 04 · frases suaves e manifestos</span>
+    </div>
+  </div>
+
+  <!-- T4 PALAVRAS EMPILHADAS -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#f5ede0;">
+      <div><div class="template-preview-frase" style="color:#662818;font-size:1.2rem;">Palavra 1.<br>Palavra 2.<br><em style="color:#d4856a;">Palavra 3.</em></div></div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T4 — Palavras empilhadas · Fundo Creme2</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#f5ede0</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Palavras</span><span class="spec-val"><strong>Playfair Display Bold Italic</strong> · cacau · 72–80pt · esquerda</span></div>
+        <div class="spec-row"><span class="spec-label">Última</span><span class="spec-val">Última palavra em <strong>#d4856a</strong> pêssego</span></div>
+      </div>
+      <span class="template-tag" style="background:#f5ede0;color:#662818;">Arte 05 · manifestos de 2–3 palavras</span>
+    </div>
+  </div>
+
+  <!-- T5 ROSA ANTIGO -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#b5897a;">
+      <div class="template-circ" style="width:130px;height:130px;background:#662818;top:-45px;right:-35px;"></div>
+      <div><div class="template-preview-frase" style="color:white;">Frase <em>provocativa</em></div></div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T5 — Arte de frase · Fundo Rosa Antigo</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#b5897a</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Bold</strong> · branco · 52–60pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · branco 50% · 14pt · rodapé</span></div>
+      </div>
+      <span class="template-tag" style="background:#f5ede0;color:#b5897a;">Arte 09 · frases ousadas e provocativas</span>
+    </div>
+  </div>
+
+  <!-- T6 CARROSSEL -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#d4856a;">
+      <div style="display:flex;gap:6px;align-items:center;">
+        <div style="background:rgba(255,255,255,0.2);border-radius:8px;width:52px;height:62px;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-style:italic;">1</span></div>
+        <div><div style="font-family:'Playfair Display',serif;font-style:italic;color:white;font-size:0.85rem;line-height:1.3;">Título do<br>carrossel</div><div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:3px;">desliza →</div></div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T6 — Capa de Carrossel</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong> (todos os slides)</span></div>
+        <div class="spec-row"><span class="spec-label">Capa</span><span class="spec-val">Fundo <strong>#d4856a</strong> pêssego ou <strong>#662818</strong> cacau</span></div>
+        <div class="spec-row"><span class="spec-label">Slides</span><span class="spec-val">Fundo <strong>#faf4ee</strong> creme · título cacau · corpo DM Sans</span></div>
+        <div class="spec-row"><span class="spec-label">Último</span><span class="spec-val">Fundo cacau · CTA branco · logo centralizada</span></div>
+      </div>
+      <span class="template-tag" style="background:#e8f0fd;color:#1a4a9e;">Artes 06, 07 · carrosseis educativos e Top 3</span>
+    </div>
+  </div>
+
+  <!-- AJUSTES FOTO -->
+  <div class="canva-divisor" style="margin-top:24px;">
+    <div class="canva-divisor-linha"></div>
+    <div class="canva-divisor-txt">📷 Ajustes de foto no Canva</div>
+    <div class="canva-divisor-linha"></div>
+  </div>
+  <div class="ajuste-grid">
+    <div class="ajuste-card"><div class="ajuste-param">Brilho</div><div class="ajuste-val">+10</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Contraste</div><div class="ajuste-val">−10</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Saturação</div><div class="ajuste-val">−5</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Temperatura</div><div class="ajuste-val">+15 🌡️</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Fade</div><div class="ajuste-val">+10 ✨</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Vinheta</div><div class="ajuste-val">−10</div></div>
+  </div>
+
+  <!-- BRAND KIT -->
+  <div class="canva-dica">
+    <div class="canva-dica-titulo">Brand Kit — cores da marca</div>
+    <div class="canva-dica-item">#faf4ee · Creme</div>
+    <div class="canva-dica-item">#d4856a · Pêssego</div>
+    <div class="canva-dica-item">#662818 · Cacau</div>
+    <div class="canva-dica-item">#c4a882 · Caramelo</div>
+    <div class="canva-dica-item">#b5897a · Rosa antigo</div>
+    <div class="canva-dica-item">Título: <strong>Playfair Display</strong> · Corpo: <strong>DM Sans</strong></div>
+  </div>
+
+  <!-- HASHTAGS -->
+  <div class="canva-divisor" style="margin-top:28px;">
+    <div class="canva-divisor-linha"></div>
+    <div class="canva-divisor-txt">🏷️ Banco de Hashtags</div>
+    <div class="canva-divisor-linha"></div>
+  </div>
+  <div class="dica"><strong>Regra:</strong> Sempre use pelo menos uma hashtag da marca. As demais, escolha conforme o conteúdo.</div>
+
+  <div class="ht-grupo">
+    <div class="ht-grupo-nome">🌱 Da marca — sempre usar</div>
+    <div class="ht-cloud">
+      <div class="ht" onclick="copiarTag(this)">#PéDeBrinkar</div>
+      <div class="ht" onclick="copiarTag(this)">#OBrincarQueFica</div>
+      <div class="ht" onclick="copiarTag(this)">#VamosBrinkar</div>
+    </div>
+  </div>
+  <div class="ht-grupo">
+    <div class="ht-grupo-nome">🧸 Produto e serviço</div>
+    <div class="ht-cloud">
+      <div class="ht" onclick="copiarTag(this)">#AluguelDeBrinquedos</div>
+      <div class="ht" onclick="copiarTag(this)">#BrinquedosDeMadeira</div>
+      <div class="ht" onclick="copiarTag(this)">#FestaMontessoriana</div>
+      <div class="ht" onclick="copiarTag(this)">#BrincarLivre</div>
+      <div class="ht" onclick="copiarTag(this)">#FestaNatural</div>
+      <div class="ht" onclick="copiarTag(this)">#MontessoriNaFesta</div>
+      <div class="ht" onclick="copiarTag(this)">#BrincarComPropósito</div>
+      <div class="ht" onclick="copiarTag(this)">#LocaçãoDeBrinquedos</div>
+    </div>
+  </div>
+  <div class="ht-grupo">
+    <div class="ht-grupo-nome">💗 Conteúdo emocional</div>
+    <div class="ht-cloud">
+      <div class="ht" onclick="copiarTag(this)">#MãePresente</div>
+      <div class="ht" onclick="copiarTag(this)">#MontessoriDeMãe</div>
+      <div class="ht" onclick="copiarTag(this)">#CriançaFeliz</div>
+      <div class="ht" onclick="copiarTag(this)">#InfânciaConsciente</div>
+      <div class="ht" onclick="copiarTag(this)">#ParentalidadeConsciente</div>
+      <div class="ht" onclick="copiarTag(this)">#BrincarÉAprender</div>
+      <div class="ht" onclick="copiarTag(this)">#MemóriasDaInfância</div>
+    </div>
+  </div>
+  <div class="ht-grupo">
+    <div class="ht-grupo-nome">📍 Local — Belo Horizonte</div>
+    <div class="ht-cloud">
+      <div class="ht" onclick="copiarTag(this)">#BrinquedosBH</div>
+      <div class="ht" onclick="copiarTag(this)">#BeloHorizonte</div>
+      <div class="ht" onclick="copiarTag(this)">#FestaBH</div>
+      <div class="ht" onclick="copiarTag(this)">#AniversárioBH</div>
+      <div class="ht" onclick="copiarTag(this)">#ZonaSulBH</div>
+    </div>
+  </div>
+  <div class="ht-grupo">
+    <div class="ht-grupo-nome">✨ Semana do Brincar</div>
+    <div class="ht-cloud">
+      <div class="ht" onclick="copiarTag(this)">#SemanaMundialDoBrincar</div>
+      <div class="ht" onclick="copiarTag(this)">#APotênciaDosEncontros</div>
+    </div>
+  </div>
+
+</div>
+
+  <!-- TEMPLATE 1 — FUNDO CACAU -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#662818;">
+      <div class="template-circ" style="width:100px;height:100px;background:#d4856a;top:-30px;right:-20px;"></div>
+      <div>
+        <div class="template-preview-frase" style="color:white;">Frase de <em>impacto</em></div>
+        <div class="template-preview-sub" style="color:rgba(255,255,255,0.5);">Pé de Brinkar</div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T1 — Arte de frase · Fundo Cacau</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#662818</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Italic</strong> · branco #ffffff · 52–64pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · <strong>#c4a882</strong> caramelo · 14pt · rodapé</span></div>
+        <div class="spec-row"><span class="spec-label">Detalhe</span><span class="spec-val">Círculo decorativo <strong>#d4856a</strong> 180px · opacidade 12% · canto superior direito</span></div>
+      </div>
+      <span class="template-tag" style="background:#fbeae7;color:#662818;">Artes 01, 05, 07 · frases fortes e carrosseis</span>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 2 — FUNDO PÊSSEGO -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#d4856a;">
+      <div class="template-circ" style="width:120px;height:120px;background:#662818;bottom:-40px;left:-30px;"></div>
+      <div>
+        <div class="template-preview-frase" style="color:white;">Pergunta de<br><em>engajamento</em></div>
+        <div class="template-preview-sub" style="color:rgba(255,255,255,0.6);">me conta nos comentários ↓</div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T2 — Arte de frase · Fundo Pêssego</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#d4856a</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Italic</strong> · branco #ffffff · 48–58pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Sub</span><span class="spec-val">DM Sans Light · branco 70% opacidade · 16pt · abaixo da frase</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · branco 60% · 14pt · rodapé</span></div>
+        <div class="spec-row"><span class="spec-label">Detalhe</span><span class="spec-val">Círculo <strong>#662818</strong> 160px · opacidade 10% · canto inferior esquerdo</span></div>
+      </div>
+      <span class="template-tag" style="background:#fdf5f0;color:#d4856a;">Arte 02 · perguntas e engajamento</span>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 3 — FUNDO CREME -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#faf4ee;border-bottom:0.5px solid var(--borda);">
+      <div class="template-circ" style="width:90px;height:90px;background:#d4856a;top:-20px;right:-15px;"></div>
+      <div>
+        <div class="template-preview-frase" style="color:#662818;">Frase <em style="color:#d4856a;">reflexiva</em></div>
+        <div class="template-preview-sub" style="color:#8a6050;">subtítulo suave</div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T3 — Arte de frase · Fundo Creme</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#faf4ee</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Italic</strong> · cacau <strong>#662818</strong> · 48–56pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Destaque</span><span class="spec-val">Palavra-chave em <strong>#d4856a</strong> pêssego dentro da frase</span></div>
+        <div class="spec-row"><span class="spec-label">Sub</span><span class="spec-val">DM Sans Light · <strong>#b5897a</strong> rosa antigo · 15pt</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · <strong>#c4a882</strong> caramelo · 14pt · rodapé</span></div>
+      </div>
+      <span class="template-tag" style="background:#f5ede0;color:#662818;">Arte 03, 04 · frases suaves e manifestos</span>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 4 — FUNDO CREME2 -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#f5ede0;">
+      <div>
+        <div class="template-preview-frase" style="color:#662818;font-size:1.2rem;">Palavra 1.<br>Palavra 2.<br><em style="color:#d4856a;">Palavra 3.</em></div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T4 — Arte de palavras empilhadas · Fundo Creme2</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#f5ede0</strong> (creme mais escuro)</span></div>
+        <div class="spec-row"><span class="spec-label">Palavras</span><span class="spec-val"><strong>Playfair Display Bold Italic</strong> · cacau · 72–80pt · alinhado à esquerda · empilhadas</span></div>
+        <div class="spec-row"><span class="spec-label">Última</span><span class="spec-val">Última palavra em <strong>#d4856a</strong> pêssego · cria ritmo visual</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · <strong>#b5897a</strong> rosa · 13pt · rodapé direito</span></div>
+      </div>
+      <span class="template-tag" style="background:#f5ede0;color:#662818;">Arte 05 · manifestos de 2–3 palavras</span>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 5 — FUNDO ROSA ANTIGO -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#b5897a;">
+      <div class="template-circ" style="width:130px;height:130px;background:#662818;top:-45px;right:-35px;"></div>
+      <div>
+        <div class="template-preview-frase" style="color:white;">Frase <em>provocativa</em></div>
+        <div class="template-preview-sub" style="color:rgba(255,255,255,0.6);">subfrase explicativa</div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T5 — Arte de frase · Fundo Rosa Antigo</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Fundo</span><span class="spec-val">Cor sólida <strong>#b5897a</strong></span></div>
+        <div class="spec-row"><span class="spec-label">Frase</span><span class="spec-val"><strong>Playfair Display Bold</strong> · branco · 52–60pt · centralizado</span></div>
+        <div class="spec-row"><span class="spec-label">Sub</span><span class="spec-val">DM Sans Light · branco 65% · 15pt · itálico · abaixo da frase</span></div>
+        <div class="spec-row"><span class="spec-label">Logo</span><span class="spec-val">DM Sans · branco 50% · 14pt · rodapé</span></div>
+        <div class="spec-row"><span class="spec-label">Detalhe</span><span class="spec-val">Círculo <strong>#662818</strong> 180px · opacidade 12% · canto superior direito</span></div>
+      </div>
+      <span class="template-tag" style="background:#f5ede0;color:#b5897a;">Arte 09 · frases ousadas e provocativas</span>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 6 — CARROSSEL -->
+  <div class="template-card">
+    <div class="template-preview" style="background:#d4856a;">
+      <div style="display:flex;gap:6px;align-items:center;">
+        <div style="background:rgba(255,255,255,0.2);border-radius:8px;width:52px;height:62px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-style:italic;">1</span>
+        </div>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-style:italic;color:white;font-size:0.85rem;line-height:1.3;">Título do<br>carrossel</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:3px;">desliza →</div>
+        </div>
+      </div>
+    </div>
+    <div class="template-corpo">
+      <div class="template-nome">T6 — Capa de Carrossel</div>
+      <div class="template-specs">
+        <div class="spec-row"><span class="spec-label">Tamanho</span><span class="spec-val"><strong>1080 × 1080 px</strong> (todos os slides)</span></div>
+        <div class="spec-row"><span class="spec-label">Capa</span><span class="spec-val">Fundo <strong>#d4856a</strong> pêssego ou <strong>#662818</strong> cacau conforme o post</span></div>
+        <div class="spec-row"><span class="spec-label">Título capa</span><span class="spec-val"><strong>Playfair Display Italic</strong> · branco · 52pt</span></div>
+        <div class="spec-row"><span class="spec-label">CTA capa</span><span class="spec-val">DM Sans · "desliza →" · branco 60% · 14pt</span></div>
+        <div class="spec-row"><span class="spec-label">Slides</span><span class="spec-val">Fundo <strong>#faf4ee</strong> creme · título em cacau Playfair · corpo DM Sans suave</span></div>
+        <div class="spec-row"><span class="spec-label">Último slide</span><span class="spec-val">Fundo cacau · CTA branco · logo centralizada</span></div>
+      </div>
+      <span class="template-tag" style="background:#e8f0fd;color:#1a4a9e;">Artes 06, 07 · carrosseis educativos e Top 3</span>
+    </div>
+  </div>
+
+  <!-- AJUSTES DE FOTO -->
+  <div class="canva-divisor">
+    <div class="canva-divisor-linha"></div>
+    <div class="canva-divisor-txt">📷 Ajustes de foto no Canva</div>
+    <div class="canva-divisor-linha"></div>
+  </div>
+
+  <div class="ajuste-grid">
+    <div class="ajuste-card"><div class="ajuste-param">Brilho</div><div class="ajuste-val">+10</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Contraste</div><div class="ajuste-val">−10</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Saturação</div><div class="ajuste-val">−5</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Temperatura</div><div class="ajuste-val">+15 🌡️</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Fade</div><div class="ajuste-val">+10 ✨</div></div>
+    <div class="ajuste-card"><div class="ajuste-param">Vinheta</div><div class="ajuste-val">−10</div></div>
+  </div>
+
+  <!-- BRAND KIT -->
+  <div class="canva-dica">
+    <div class="canva-dica-titulo">Brand Kit — configure uma vez no Canva</div>
+    <div class="canva-dica-item">Cores: #faf4ee · #d4856a · #662818 · #c4a882 · #b5897a</div>
+    <div class="canva-dica-item">Fonte título: <strong>Playfair Display</strong> (gratuita no Canva)</div>
+    <div class="canva-dica-item">Fonte corpo: <strong>DM Sans</strong> ou Lato Light</div>
+    <div class="canva-dica-item">Após configurar o Brand Kit, as cores e fontes ficam com 1 toque</div>
+  </div>
+
+  <!-- DIVISOR HASHTAGS -->
+  <div class="canva-divisor" style="margin-top:28px;">
+    <div class="canva-divisor-linha"></div>
+    <div class="canva-divisor-txt">🏷️ Banco de Hashtags</div>
+    <div class="canva-divisor-linha"></div>
+  </div>
+
+  <div class="dica"><strong>Regra:</strong> Sempre use pelo menos uma hashtag da marca. As demais, escolha conforme o conteúdo.</div>
+
+  <div class="ht-grupo">
+    <div class="ht-grupo-nome">🌱 Da marca — sempre usar</div>
+    <div class="ht-cloud">
+      <div class="ht" onclick="copiarTag(this)">#PéDeBrinkar</div>
+      <div class="ht" onclick="copiarTag(this)">#OBrincarQueFica</div>
+      <div class="ht" onclick="copiarTag(this)">#VamosBrinkar</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ JUNHO ═══ -->
+<div id="painel-junho" class="painel">
+  <p class="sec-titulo">Junho <em>2026</em></p>
+  <p class="sec-sub">3x por semana · grid sempre alternando · toque para ver legenda</p>
+
+  <div class="junho-progresso">
+    <div>
+      <div class="prog-label">Publicados</div>
+      <div class="prog-num" id="prog-num">0 / 12</div>
+    </div>
+    <div class="prog-barra-wrap">
+      <div class="prog-barra-bg"><div class="prog-barra-fill" id="prog-fill"></div></div>
+    </div>
+    <div class="prog-pct" id="prog-pct">0%</div>
+  </div>
+
+  <!-- SEMANA 1 -->
+  <div class="semana-bloco">
+    <div class="semana-titulo">Semana 1 · 04 a 06/06</div>
+
+    <div class="post-item" id="post-1" onclick="togglePost('post-1')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">04<span class="post-data-dia">qui</span></div>
+      <div class="post-info">
+        <div class="post-formato">Arte de frase · T3 fundo creme</div>
+        <div class="post-titulo">"Aqui quem dirige é a imaginação."</div>
+        <div class="post-desc">Arte 04 — manifesto da marca. Primeiro post de junho.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-1',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-1">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-1">Na Pé de Brinkar, a gente não define o que a criança vai criar.
+
+A gente só prepara o espaço. Escolhe os brinquedos com cuidado. E deixa a imaginação entrar.
+
+Porque criança que brinca com liberdade aprende a pensar com liberdade.
+
+É isso que a gente quer pra cada família que escolhe a gente. 🌿
+
+#pédebrinkar #brinquedosmontessorianos #brincarintencional #imaginaçãoinfantil #montessori #infânciaconsciente</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-1',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-2" onclick="togglePost('post-2')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">06<span class="post-data-dia">sáb</span></div>
+      <div class="post-info">
+        <div class="post-formato">Foto real — aniversário</div>
+        <div class="post-titulo">Foto do aniversário da Alícia — a mais emocionante</div>
+        <div class="post-desc">Após arte, o grid pede foto. Alta emoção, alcance orgânico alto.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-2',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-2">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-2">Essa foto me parte o coração — do jeito mais bonito possível. 🧡
+
+O aniversário da Alícia foi tudo que eu imaginei quando criei a Pé de Brinkar.
+
+Crianças brincando. Sem tela. Sem pressa. Com os olhos brilhando.
+
+E eu — mãe, empreendedora, e apaixonada pelo brincar — parei no meio da festa só pra guardar aquela imagem na memória.
+
+Isso é o que a gente faz. A gente cria o espaço pra que essas memórias aconteçam. 🌿
+
+Obrigada a cada família que brinca com a gente.
+
+#pédebrinkar #aniversárioinfantil #brincarintencional #infânciaconsciente #festamontessoriana #memóriasinfância #belohorizonte</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-2',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 2 -->
+  <div class="semana-bloco">
+    <div class="semana-titulo">Semana 2 · 09 a 12/06</div>
+
+    <div class="post-item" id="post-3" onclick="togglePost('post-3')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">09<span class="post-data-dia">ter</span></div>
+      <div class="post-info">
+        <div class="post-formato">Arte de frase · T4 palavras empilhadas</div>
+        <div class="post-titulo">"Criatividade. Cuidado. Muita imaginação."</div>
+        <div class="post-desc">Arte 05 — fundo cacau. Após foto, o grid pede arte.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-3',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-3">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-3">É com isso que a gente trabalha todo dia. 🌿
+
+Criatividade. Cuidado. Muita imaginação.
+
+Não é só sobre brinquedo. É sobre o que acontece quando uma criança tem o espaço certo, o brinquedo certo e o tempo necessário pra ser ela mesma.
+
+Isso é a Pé de Brinkar. 💛
+
+#pédebrinkar #brinquedosmontessorianos #brincarintencional #infânciaconsciente #montessori #desenvolvimentoinfantil</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-3',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-4" onclick="togglePost('post-4')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">11<span class="post-data-dia">qui</span></div>
+      <div class="post-info">
+        <div class="post-formato">Reels</div>
+        <div class="post-titulo">Vídeo do aniversário da Alícia</div>
+        <div class="post-desc">30 a 45s com música suave. Maior potencial de viralização do mês.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-4',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-4">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-4">Quando brincar vira memória. 🌿
+
+O aniversário da Alícia foi isso: espaço livre, brinquedos com propósito e crianças sendo crianças.
+
+Que festa bonita é essa que a gente não precisa entreter — só precisa criar o espaço certo. 💛
+
+Quer esse espaço no aniversário da sua criança? Link na bio.
+
+#pédebrinkar #reels #festamontessoriana #aniversárioinfantil #brincarintencional #locaçãodebrinquedos #belohorizonte #infânciaconsciente</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-4',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-5" onclick="togglePost('post-5')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">12<span class="post-data-dia">sex</span></div>
+      <div class="post-info">
+        <div class="post-formato">Arte de frase · T5 fundo rosa antigo</div>
+        <div class="post-titulo">"Barulho não é sinônimo de desenvolvimento."</div>
+        <div class="post-desc">Arte 09 — após reels, o grid pede arte. Frase provocativa.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-5',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-5">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-5">A criança que grita, bate e faz a casa tremer está se divertindo. Isso é ótimo.
+
+Mas a criança que encaixa, empilha, testa e tenta de novo em silêncio? Essa está desenvolvendo.
+
+Concentração, persistência, coordenação, raciocínio lógico — tudo isso acontece em quietude.
+
+Brinquedo bom desenvolve em silêncio. 🌿
+
+Isso faz sentido pra você? Me conta o que você percebe quando sua criança brinca 👇
+
+#pédebrinkar #brinquedosmontessorianos #desenvolvimentoinfantil #montessori #brincarintencional #infânciaconsciente</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-5',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 3 -->
+  <div class="semana-bloco">
+    <div class="semana-titulo">Semana 3 · 16 a 19/06</div>
+
+    <div class="post-item" id="post-6" onclick="togglePost('post-6')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">16<span class="post-data-dia">ter</span></div>
+      <div class="post-info">
+        <div class="post-formato">Foto real — brinquedo 🧸</div>
+        <div class="post-titulo">Brinquedo da semana — foto em uso</div>
+        <div class="post-desc">Após arte, o grid pede foto. Criança usando brinquedo do acervo.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-6',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-6">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-6">Brinquedo bom a gente não precisa explicar. 🌿
+
+A criança chega, pega, e já começa a inventar.
+
+[Nome do brinquedo] — um dos queridinhos do acervo. Enquanto brinca, a criança desenvolve concentração, coordenação e autonomia.
+
+Sem instrução. Sem ajuda. Só exploração.
+
+Quer no próximo evento? Me manda mensagem 💛
+
+#pédebrinkar #brinquedosmontessorianos #desenvolvimentoinfantil #brincarintencional #montessori #belohorizonte</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-6',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-7" onclick="togglePost('post-7')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">18<span class="post-data-dia">qui</span></div>
+      <div class="post-info">
+        <div class="post-formato">Arte de frase · T3 fundo creme</div>
+        <div class="post-titulo">"Criança precisa de tempo para explorar."</div>
+        <div class="post-desc">Arte 03 — após foto, o grid pede arte. Tom reflexivo.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-7',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-7">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-7">A pressa é inimiga do brincar. 🌿
+
+Criança que é interrompida toda hora não aprende a se concentrar. Criança que tem o brinquedo trocado antes de explorar direito não aprende a persistir.
+
+Brincar livre precisa de tempo. De silêncio. De espaço pra errar e tentar de novo.
+
+Esse é o maior presente que você pode dar pra sua criança hoje: tempo. 💛
+
+Você consegue dar esse espaço pra ela? Me conta como é na sua casa 👇
+
+#pédebrinkar #brincarlivre #montessori #desenvolvimentoinfantil #brincarintencional #infânciaconsciente #parentalidade</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-7',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-8" onclick="togglePost('post-8')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">19<span class="post-data-dia">sex</span></div>
+      <div class="post-info">
+        <div class="post-formato">Foto real — Festa Junina 🧸</div>
+        <div class="post-titulo">Brinquedo da semana + Festa Junina</div>
+        <div class="post-desc">Após arte, o grid pede foto. Conexão brincar junino + montessori.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-8',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-8">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-8">Festa Junina é o brincar mais tradicional do Brasil. 🌽
+
+Arraiá, quadrilha, brincadeiras de roda — tudo isso que a gente fazia sem saber que estava desenvolvendo coordenação, ritmo, socialização e senso de comunidade.
+
+O brincar sempre foi sábio. A gente só tá lembrando disso.
+
+Na Pé de Brinkar, a gente traz essa sabedoria pra dentro de casa — com brinquedos que têm a mesma essência: simples, inteligentes e cheios de propósito.
+
+Feliz mês junino! 🎉
+
+#pédebrinkar #festajunina #brincartradicional #desenvolvimentoinfantil #montessori #brincarintencional #junho</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-8',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 4 -->
+  <div class="semana-bloco">
+    <div class="semana-titulo">Semana 4 · 23 a 26/06</div>
+
+    <div class="post-item" id="post-9" onclick="togglePost('post-9')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">23<span class="post-data-dia">ter</span></div>
+      <div class="post-info">
+        <div class="post-formato">Carrossel · capa pêssego</div>
+        <div class="post-titulo">Top 3 brinquedos preferidos das crianças</div>
+        <div class="post-desc">Arte 06 — após foto, o grid pede carrossel. Alto salvamento.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-9',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-9">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-9">Salva esse carrossel — você vai querer lembrar disso. 🔖
+
+Os 3 brinquedos que as crianças mais amam no nosso acervo (e o que cada um desenvolve):
+
+👉 Desliza pra ver
+
+Cada um foi escolhido com propósito: sem pilha, sem tela, só criança e imaginação.
+
+Quer conhecer o acervo completo? Me manda mensagem 💛
+
+#pédebrinkar #brinquedosmontessorianos #desenvolvimentoinfantil #montessori #brincarintencional #locaçãodebrinquedos #belohorizonte</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-9',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-10" onclick="togglePost('post-10')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">25<span class="post-data-dia">qui</span></div>
+      <div class="post-info">
+        <div class="post-formato">Foto real — brinquedo 🧸</div>
+        <div class="post-titulo">Brinquedo da semana — acervo em destaque</div>
+        <div class="post-desc">Após carrossel, o grid pede foto. Kombi Retrô, Triângulo Pikler ou peça com boa luz.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-10',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-10">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-10">Brinquedo bom a gente não precisa explicar. 🌿
+
+A criança chega, pega, e já começa a inventar.
+
+[Nome do brinquedo] — um dos queridinhos do acervo. Enquanto brinca, a criança desenvolve concentração, coordenação e autonomia.
+
+Sem instrução. Sem ajuda. Só exploração.
+
+Quer no próximo evento? Me manda mensagem 💛
+
+#pédebrinkar #brinquedosmontessorianos #desenvolvimentoinfantil #brincarintencional #montessori #belohorizonte</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-10',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+
+    <div class="post-item" id="post-11" onclick="togglePost('post-11')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">26<span class="post-data-dia">sex</span></div>
+      <div class="post-info">
+        <div class="post-formato">Arte de frase · T1 fundo cacau</div>
+        <div class="post-titulo">5 curiosidades sobre brincar que todo pai deve saber</div>
+        <div class="post-desc">Arte 07 — capa cacau. Após foto, o grid pede arte/carrossel.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-11',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-11">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-11">Salva esse carrossel antes de continuar. 🔖
+
+5 coisas sobre o brincar que a ciência já provou — e que vão mudar a forma como você olha pra sua criança brincando:
+
+👉 Desliza
+
+Brincar não é passatempo. É desenvolvimento. É neurociência. É infância sendo infância. 🌿
+
+Qual dessas curiosidades mais te surpreendeu? Me conta aqui 👇
+
+#pédebrinkar #desenvolvimentoinfantil #montessori #brincarintencional #neurociênciainfantil #infânciaconsciente #brinquedosmontessorianos</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-11',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 5 -->
+  <div class="semana-bloco">
+    <div class="semana-titulo">Semana 5 · 30/06</div>
+
+    <div class="post-item" id="post-12" onclick="togglePost('post-12')">
+      <div class="post-check"></div>
+      <div class="post-data-badge">30<span class="post-data-dia">ter</span></div>
+      <div class="post-info">
+        <div class="post-formato">Arte de frase · T2 fundo pêssego</div>
+        <div class="post-titulo">Encerramento de junho</div>
+        <div class="post-desc">Após arte/carrossel, fecha o mês com CTA para julho.</div>
+      </div>
+    </div>
+    <button class="post-legenda-btn" onclick="toggleLegenda('leg-12',this)">▸ Ver legenda</button>
+    <div class="post-legenda-wrap" id="leg-12">
+      <div class="post-legenda-corpo">
+        <div class="post-legenda-texto" id="ltxt-12">Junho foi um mês de muito brincar. 🌿
+
+E eu fico pensando o quanto cada evento que a gente faz é uma memória que vai durar pra sempre na vida de uma criança.
+
+Isso me move. Todo dia.
+
+Julho vem aí — com mais brinquedos, mais espaços, mais encontros. Se você ainda não marcou seu evento, é a hora. 💛
+
+Me manda mensagem e a gente conversa!
+
+#pédebrinkar #locaçãodebrinquedos #festamontessoriana #brincarintencional #belohorizonte #infânciaconsciente #julho</div>
+        <button class="post-legenda-copiar" onclick="copiarLegenda('ltxt-12',this)">📋 Copiar legenda</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ TEMPLATES ═══ -->
+<div id="painel-templates" class="painel">
+  <p class="sec-titulo">Templates<br><em>WhatsApp</em></p>
+  <p class="sec-sub">Toque em "Copiar" e cole direto no WhatsApp</p>
+
+  <!-- T1 COLETA -->
+  <div class="tpl-card" id="tpl-1">
+    <div class="tpl-header" onclick="toggleTpl('tpl-1')">
+      <div class="tpl-header-info">
+        <div class="tpl-etapa">1ª mensagem</div>
+        <div class="tpl-nome">Coleta de dados</div>
+        <div class="tpl-quando">Quando: cliente entra em contato pela primeira vez</div>
+      </div>
+      <div class="tpl-arrow">▸</div>
+    </div>
+    <div class="tpl-body">
+      <div class="tpl-texto" id="ttxt-1">Oi [nome]! 🌿 Que alegria ter você por aqui!
+
+Pra eu conseguir montar a proposta certinha pra vocês, me conta alguns detalhes da festinha:
+
+🗓️ *Data:*
+⏰ *Horário de início:*
+⏳ *Duração prevista:*
+📍 *Local e endereço:*
+👧 *Nome e idade da criança:*
+🧒 *Quantidade de crianças:*
+🏠 *Espaço:* (coberto ou aberto / tipo de piso: cerâmica, grama, deck...)
+✨ *Como conheceu a Pé de Brinkar?*
+
+Assim que eu tiver essas informações, te envio a proposta com tudo que precisa pra essa festa ser incrível! 💛</div>
+      <button class="tpl-copiar" onclick="copiarTpl('ttxt-1', this)">📋 Copiar mensagem</button>
+    </div>
+  </div>
+
+  <!-- T2 ENVIO PROPOSTA -->
+  <div class="tpl-card" id="tpl-2">
+    <div class="tpl-header" onclick="toggleTpl('tpl-2')">
+      <div class="tpl-header-info">
+        <div class="tpl-etapa">2ª mensagem</div>
+        <div class="tpl-nome">Envio da proposta</div>
+        <div class="tpl-quando">Quando: enviar junto com o PDF da proposta</div>
+      </div>
+      <div class="tpl-arrow">▸</div>
+    </div>
+    <div class="tpl-body">
+      <div class="tpl-texto" id="ttxt-2">Oi [nome]! 🌿
+
+Aqui está a proposta da Pé de Brinkar pra festa da [nome da criança]!
+
+Preparei com carinho levando em conta tudo que você me contou. Qualquer dúvida, estou por aqui pra conversar. 💛
+
+Quando quiser confirmar, é só me falar! 🎉</div>
+      <button class="tpl-copiar" onclick="copiarTpl('ttxt-2', this)">📋 Copiar mensagem</button>
+    </div>
+  </div>
+
+  <!-- T3 CONFIRMAÇÃO -->
+  <div class="tpl-card" id="tpl-3">
+    <div class="tpl-header" onclick="toggleTpl('tpl-3')">
+      <div class="tpl-header-info">
+        <div class="tpl-etapa">3ª mensagem</div>
+        <div class="tpl-nome">Confirmação de agendamento</div>
+        <div class="tpl-quando">Quando: cliente aceitar a proposta</div>
+      </div>
+      <div class="tpl-arrow">▸</div>
+    </div>
+    <div class="tpl-body">
+      <div class="tpl-texto" id="ttxt-3">Que notícia boa, [nome]! 🎉
+
+Festa da [nome da criança] confirmada! Já anotei tudo aqui:
+
+📅 *Data:* [data]
+⏰ *Horário:* [horário]
+📍 *Local:* [endereço]
+
+Próximos passos: vou te entrar em contato alguns dias antes da festa pra alinhar os últimos detalhes. Qualquer dúvida antes disso, pode me chamar! 🌿💛</div>
+      <button class="tpl-copiar" onclick="copiarTpl('ttxt-3', this)">📋 Copiar mensagem</button>
+    </div>
+  </div>
+
+  <!-- T4 PRÉ-FESTA -->
+  <div class="tpl-card" id="tpl-4">
+    <div class="tpl-header" onclick="toggleTpl('tpl-4')">
+      <div class="tpl-header-info">
+        <div class="tpl-etapa">4ª mensagem</div>
+        <div class="tpl-nome">Instruções pré-festa</div>
+        <div class="tpl-quando">Quando: 2 a 3 dias antes da festa</div>
+      </div>
+      <div class="tpl-arrow">▸</div>
+    </div>
+    <div class="tpl-body">
+      <div class="tpl-texto" id="ttxt-4">Oi [nome]! 🌿
+
+A festinha da [nome da criança] tá chegando! Passando pra alinhar alguns detalhes:
+
+🕐 *Chegamos em:* [horário de montagem — geralmente 1h antes]
+📦 *Vamos precisar de:* um espaço livre pra montar os brinquedos e uma tomada próxima (se necessário)
+🌿 *Dica:* quanto mais espaço livre no chão, mais rico fica o ambiente de brincar!
+
+Qualquer dúvida de última hora, pode me chamar aqui. Mal posso esperar pra ver as crianças brincando! 💛🎉</div>
+      <button class="tpl-copiar" onclick="copiarTpl('ttxt-4', this)">📋 Copiar mensagem</button>
+    </div>
+  </div>
+
+  <!-- T5 PÓS-FESTA -->
+  <div class="tpl-card" id="tpl-5">
+    <div class="tpl-header" onclick="toggleTpl('tpl-5')">
+      <div class="tpl-header-info">
+        <div class="tpl-etapa">5ª mensagem</div>
+        <div class="tpl-nome">Pós-festa</div>
+        <div class="tpl-quando">Quando: 1 a 2 dias depois da festa</div>
+      </div>
+      <div class="tpl-arrow">▸</div>
+    </div>
+    <div class="tpl-body">
+      <div class="tpl-texto" id="ttxt-5">Oi [nome]! 🌿
+
+Espero que a festinha da [nome da criança] tenha sido tudo que vocês imaginaram! 🎉
+
+Pra mim é sempre muito especial fazer parte desses momentos. Fico feliz de saber que conseguimos criar um espaço gostoso pra cada criança brincar do jeito dela.
+
+Se tiver alguma foto ou registro do dia, adoraria ver — pode me mandar por aqui mesmo! 📷
+
+E se alguma amiga ou familiar estiver pensando em fazer algo assim, pode indicar a Pé de Brinkar. Fico feliz em receber! 💛🌿</div>
+      <button class="tpl-copiar" onclick="copiarTpl('ttxt-5', this)">📋 Copiar mensagem</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="rodape">Pé de Brinkar · @pedebrinkar · (31) 97129-1204</div>
+
+<script>
+// ── NAVEGAÇÃO ──
+function trocarTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('ativa'));
+  document.querySelectorAll('.painel').forEach(p => p.classList.remove('ativo'));
+  event.target.classList.add('ativa');
+  document.getElementById('painel-' + id).classList.add('ativo');
+}
+
+// ── SELEÇÃO PILLS ──
+function selecionarPill(el, grupoId) {
+  document.querySelectorAll('#' + grupoId + ' .pill').forEach(p => p.classList.remove('ativo'));
+  el.classList.add('ativo');
+}
+
+function selecionarTom(el) {
+  el.classList.toggle('ativo');
+}
+
+function selecionarFreq(el) {
+  document.querySelectorAll('#freq .freq-btn').forEach(b => b.classList.remove('ativo'));
+  el.classList.add('ativo');
+}
+
+let temaSelecionado = '';
+function selecionarTema(el, tema) {
+  document.querySelectorAll('.tema-card').forEach(c => c.classList.remove('ativo'));
+  el.classList.add('ativo');
+  temaSelecionado = tema;
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('ativo');
+  const box = el.querySelector('.check-box');
+  box.textContent = el.classList.contains('ativo') ? '✓' : '';
+}
+
+// ── HELPERS ──
+function getAtivo(seletor) {
+  const el = document.querySelector(seletor + ' .ativo, ' + seletor + '.ativo');
+  return el ? el.textContent.trim() : '';
+}
+
+function getAtivosTodos(seletor) {
+  return [...document.querySelectorAll(seletor + ' .ativo')].map(e => e.querySelector('.check-nome')?.textContent.trim() || e.textContent.trim()).join(', ');
+}
+
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (loading) {
+    btn.classList.add('loading');
+    btn.innerHTML = '<div class="spinner"></div> Criando...';
+    btn.disabled = true;
+  } else {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+  }
+}
+
+function mostrarResultado(id, texto) {
+  const el = document.getElementById(id);
+  el.classList.add('visivel');
+  document.getElementById(id + '-texto').textContent = texto;
+}
+
+async function chamarClaude(prompt) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: `Você é a assistente de conteúdo da Pé de Brinkar, marca de locação de brinquedos de madeira montessorianos para festas infantis em Belo Horizonte.
+
+IDENTIDADE DA MARCA:
+- Propósito: Inspirar um mundo onde o brincar transforma infâncias e constrói futuros
+- Tom: acolhedor, autêntico, humano, sem forçar emoção
+- Público: mãe ~35 anos, casada, filho ~5 anos, zona sul BH, pós-graduada, renda 15k+, educação montessoriana
+- Essência: brincar com propósito, presença parental, memórias reais, telas fora
+- Tagline: "transformar o mundo, um brinquedo de cada vez"
+- Instagram: @pedebrinkar
+
+REGRAS DE LINGUAGEM:
+- Use "sua criança" nunca "seu filho/sua filha"
+- Nunca escreva "A Pé de Brinkar" — sempre só "Pé de Brinkar"
+- Tom real, sem exagero emocional forçado
+- Frases curtas, diretas, que respiram
+- Sem clichês de marketing infantil
+
+Responda sempre em português brasileiro, de forma concisa e prática.`,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  const data = await res.json();
+  return data.content.map(b => b.text || '').join('');
+}
+
+// ── PAUTAS ──
+async function gerarPautas() {
+  const tema = temaSelecionado || 'brinquedos montessorianos';
+  const formato = getAtivo('#pills-formato');
+  const qtd = getAtivo('#pills-qtd');
+  const contexto = document.getElementById('contexto-pautas').value;
+
+  setLoading('btn-pautas', true);
+  document.getElementById('btn-pautas').textContent = '⏳ Gerando...';
+
+  try {
+    const prompt = `Gere ${qtd || '5 ideias'} de pautas para posts no Instagram da Pé de Brinkar.
+
+Tema: ${tema}
+Formato: ${formato || 'carrossel'}
+${contexto ? 'Contexto extra: ' + contexto : ''}
+
+Para cada pauta, dê:
+- Título/gancho do post
+- Ideia central em 1 linha
+- Sugestão de CTA
+
+Seja criativa e use a linguagem da marca. Foque na persona: mãe consciente, BH, filha pequena.`;
+
+    const resultado = await chamarClaude(prompt);
+    mostrarResultado('resultado-pautas', resultado);
+  } catch (e) {
+    mostrarResultado('resultado-pautas', '⚠️ Erro ao conectar. Tente novamente.');
+  }
+
+  setLoading('btn-pautas', false);
+  document.getElementById('btn-pautas').innerHTML = '💡 Gerar ideias de pautas';
+}
+
+// ── LEGENDA ──
+async function gerarLegenda() {
+  const tons = getAtivosTodos('#tons-legenda');
+  const msg = document.getElementById('msg-legenda').value;
+  const tomsAdic = getAtivosTodos('#toms');
+
+  if (!msg.trim()) {
+    alert('Conta o que você quer comunicar primeiro 💛');
+    return;
+  }
+
+  setLoading('btn-legenda', true);
+  document.getElementById('btn-legenda').textContent = '⏳ Escrevendo...';
+
+  try {
+    const prompt = `Escreva uma legenda para o Instagram da Pé de Brinkar.
+
+O que comunicar: ${msg}
+Tom(s): ${tons || 'pessoal e emocional'}
+${tomsAdic ? 'Estilo adicional: ' + tomsAdic : ''}
+
+A legenda deve:
+- Ter uma primeira linha que para o scroll
+- Ser autêntica, sem emoção forçada
+- Incluir 4 a 6 hashtags ao final (sempre #PéDeBrinkar)
+- Ter um CTA leve ao final
+
+Escreva uma versão completa, pronta para publicar.`;
+
+    const resultado = await chamarClaude(prompt);
+    mostrarResultado('resultado-legenda', resultado);
+  } catch (e) {
+    mostrarResultado('resultado-legenda', '⚠️ Erro ao conectar. Tente novamente.');
+  }
+
+  setLoading('btn-legenda', false);
+  document.getElementById('btn-legenda').innerHTML = '✍️ Escrever legenda';
+}
+
+// ── REELS ──
+async function gerarReels() {
+  const dur = getAtivo('#pills-dur');
+  const tema = document.getElementById('tema-reels').value;
+  const obj = getAtivo('#pills-obj');
+
+  if (!tema.trim()) {
+    alert('Coloca o tema ou ideia do Reels primeiro 💛');
+    return;
+  }
+
+  setLoading('btn-reels', true);
+  document.getElementById('btn-reels').textContent = '⏳ Roteirizando...';
+
+  try {
+    const prompt = `Crie um roteiro de Reels para a Pé de Brinkar.
+
+Tema/ideia: ${tema}
+Duração: ${dur || '30s'}
+Objetivo: ${obj || 'conexão'}
+
+O roteiro deve ter:
+- GANCHO: primeiros 2-3 segundos (frase ou ação que prende)
+- DESENVOLVIMENTO: o que mostrar/falar (cenas ou texto)
+- CTA: encerramento com ação
+- LEGENDA SUGERIDA: curta, com hashtags
+
+Use linguagem da marca: acolhedora, real, sem forçar.`;
+
+    const resultado = await chamarClaude(prompt);
+    mostrarResultado('resultado-reels', resultado);
+  } catch (e) {
+    mostrarResultado('resultado-reels', '⚠️ Erro ao conectar. Tente novamente.');
+  }
+
+  setLoading('btn-reels', false);
+  document.getElementById('btn-reels').innerHTML = '🎬 Gerar roteiro';
+}
+
+// ── MÊS ──
+async function gerarMes() {
+  const freq = getAtivo('#freq');
+  const datas = document.getElementById('datas-mes').value;
+  const mes = document.getElementById('mes-ref').value;
+  const contexto = document.getElementById('contexto-mes').value;
+
+  setLoading('btn-mes', true);
+  document.getElementById('btn-mes').textContent = '⏳ Montando grade...';
+
+  try {
+    const prompt = `Monte um calendário editorial do Instagram para a Pé de Brinkar.
+
+Mês: ${mes || 'próximo mês'}
+Frequência: ${freq || '3x'} por semana
+${datas ? 'Datas importantes: ' + datas : ''}
+${contexto ? 'Contexto: ' + contexto : ''}
+
+Para cada post, indique:
+- Data (dia da semana + dia)
+- Formato (arte de frase / foto real / carrossel / reels)
+- Título/assunto do post
+- Horário sugerido (use: 7-8h, 12-13h ou 19h30-21h)
+
+Mix equilibrado: 70% neutro/educativo, 20% emocional, 10% vendas suave.
+Inclua datas comemorativas relevantes para o público.`;
+
+    const resultado = await chamarClaude(prompt);
+    mostrarResultado('resultado-mes', resultado);
+  } catch (e) {
+    mostrarResultado('resultado-mes', '⚠️ Erro ao conectar. Tente novamente.');
+  }
+
+  setLoading('btn-mes', false);
+  document.getElementById('btn-mes').innerHTML = '📅 Montar grade do mês';
+}
+
+// ── COPIAR ──
+function copiar(id) {
+  const texto = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    const btn = event.target;
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => btn.innerHTML = '📋 Copiar', 1500);
+  });
+}
+
+// ── TEMPLATES ──
+function toggleTpl(id) {
+  document.getElementById(id).classList.toggle('aberto');
+}
+
+function copiarTpl(id, btn) {
+  const texto = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => btn.innerHTML = '📋 Copiar mensagem', 1500);
+  });
+}
+
+// ── LEGENDA EXPANDER ──
+function toggleLegenda(id, btn) {
+  const wrap = document.getElementById(id);
+  const aberta = wrap.classList.toggle('aberta');
+  btn.textContent = aberta ? '▾ Fechar legenda' : '▸ Ver legenda';
+}
+
+function copiarLegenda(id, btn) {
+  const texto = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => btn.innerHTML = '📋 Copiar legenda', 1500);
+  });
+}
+
+// ── JUNHO CHECKLIST ──
+const totalPosts = 9;
+
+function togglePost(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('feito');
+  const check = el.querySelector('.post-check');
+  check.textContent = el.classList.contains('feito') ? '✓' : '';
+  salvarProgresso();
+  atualizarBarra();
+}
+
+function atualizarBarra() {
+  const feitos = document.querySelectorAll('#painel-junho .post-item.feito').length;
+  const total = document.querySelectorAll('#painel-junho .post-item').length;
+  const pct = total > 0 ? Math.round((feitos / total) * 100) : 0;
+  document.getElementById('prog-num').textContent = feitos + ' / ' + total;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+function salvarProgresso() {
+  const estado = {};
+  document.querySelectorAll('#painel-junho .post-item').forEach(el => {
+    estado[el.id] = el.classList.contains('feito');
+  });
+  try { localStorage.setItem('junho-pedebrinkar', JSON.stringify(estado)); } catch(e) {}
+}
+
+function carregarProgresso() {
+  try {
+    const salvo = localStorage.getItem('junho-pedebrinkar');
+    if (!salvo) return;
+    const estado = JSON.parse(salvo);
+    Object.keys(estado).forEach(id => {
+      if (estado[id]) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('feito');
+          el.querySelector('.post-check').textContent = '✓';
+        }
+      }
+    });
+    atualizarBarra();
+  } catch(e) {}
+}
+
+carregarProgresso();
+
+// ── PWA INSTALL BANNER ──
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const banner = document.getElementById('pwa-banner');
+  if (banner) banner.style.display = 'flex';
+});
+
+function instalarApp() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => {
+    deferredPrompt = null;
+    const banner = document.getElementById('pwa-banner');
+    if (banner) banner.style.display = 'none';
+  });
+}
+
+function fecharBanner() {
+  const banner = document.getElementById('pwa-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+function copiarTag(el) {
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    el.classList.add('copiado');
+    const orig = el.textContent;
+    el.textContent = '✓';
+    setTimeout(() => { el.textContent = orig; el.classList.remove('copiado'); }, 1000);
+  });
+}
+</script>
+</body>
+</html>
